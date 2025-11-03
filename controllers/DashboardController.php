@@ -60,7 +60,7 @@ class DashboardController {
             $end_date = $_POST['end_date'] ?? '';
             $end_time = $_POST['end_time'] ?? '';
             
-            $start_datetime = !empty($start_date) && !empty($start_time) ? "{$start_date} {$start_time}:00" : '';  // Add seconds if needed
+            $start_datetime = !empty($start_date) && !empty($start_time) ? "{$start_date} {$start_time}:00" : '';  
             $end_datetime = !empty($end_date) && !empty($end_time) ? "{$end_date} {$end_time}:00" : '';
             
             $status = $_POST['status'] ?? 'active';
