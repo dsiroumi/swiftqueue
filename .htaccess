@@ -1,0 +1,22 @@
+RewriteEngine On
+
+# Ensure mod_rewrite is on (some hosts need this)
+<IfModule mod_rewrite.c>
+    # Force HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Route all non-file/non-directory requests to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# Set index.php as default (fallback if rewrites fail)
+DirectoryIndex index.php
+
+# Deny access to sensitive files
+<Files "db.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
